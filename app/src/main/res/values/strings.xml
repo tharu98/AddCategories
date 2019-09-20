@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AddCategories</string>
+    <string name="category">Categories</string>
+    <string name="name">Category Name</string>
+    <string name="photo">Add Image</string>
+    <string name="add1">Add Category</string>
+    <string name="add2">Add Item</string>
+    <string name="admin">Admin Page</string>
+</resources>
