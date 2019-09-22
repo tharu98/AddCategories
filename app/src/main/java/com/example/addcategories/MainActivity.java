@@ -8,16 +8,19 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -27,12 +30,13 @@ import java.io.InputStream;
 public class MainActivity extends AppCompatActivity {
 
         EditText catName;
-        Button addCatBtn,imageBtn;
+        Button addCatBtn,imageBtn,mainBtn;
         ImageView imageView;
 
         final int REQUEST_CODE_GALLERY =999;
 
-        public static SQLiteHelper sqLiteHelper;
+        SQLiteHelper sqLiteHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         init();
 
-        sqLiteHelper = new SQLiteHelper(this,"Category.db",null,1);
+        sqLiteHelper = new SQLiteHelper(this,"category.db",null,1);
         sqLiteHelper.queryData("CREATE TABLE IF NOT EXISTS CATEGORY(ID INTEGER PRIMARY KEY AUTOINCREMENT,catName VARCHAR,image BLOB)");
 
         imageBtn.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +81,19 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        mainBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(MainActivity.this,ViewListContents.class);
+                startActivity(intent);
+            }
+        });
 
+
+
+    }
+    public void displayCategories(View view){
+        startActivity(new Intent(this, Display.class));
     }
 
     private byte[] imageViewToByte(ImageView imageView) {
@@ -131,6 +147,10 @@ public class MainActivity extends AppCompatActivity {
         addCatBtn=(Button) findViewById(R.id.addCatBtn);
         imageBtn=(Button) findViewById(R.id.imageBtn);
         imageView=(ImageView) findViewById(R.id.imageView);
+        mainBtn=(Button) findViewById(R.id.mainBtn);
+        sqLiteHelper=new SQLiteHelper(this,"category.db ",null,1);
+
+
     }
 
     }

@@ -7,4 +7,15 @@
     <string name="add2">Add Item</string>
     <string name="admin">Admin Page</string>
     <string name="chooseImage">Choose Image</string>
+    <string name="addMain">Add To Main Page</string>
+    <string name="cateName">Category Name</string>
+    <string name="username">User Name</string>
+    <string name="password">Password</string>
+    <string name="login">Log In</string>
+    <string name="usertype">User Type</string>
+    <string-array name="usertype">
+        <item>User</item>
+        <item>Admin</item>
+    </string-array>
+
 </resources>
