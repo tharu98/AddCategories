@@ -1,5 +1,6 @@
 package com.example.addcategories;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,9 +8,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
 public class SQLiteHelper  extends SQLiteOpenHelper {
+
+    public static final String DATABASE_NAME="CATEGORY";
+
+
     public SQLiteHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
+
 
     public void queryData(String sql){
         SQLiteDatabase database=getWritableDatabase();
@@ -17,6 +23,7 @@ public class SQLiteHelper  extends SQLiteOpenHelper {
     }
 
     public void insertData(String catName,byte[] image){
+
          SQLiteDatabase database=getWritableDatabase();
          String sql="INSERT INTO CATEGORY VALUES (NULL,?,?)";
 
@@ -29,9 +36,10 @@ public class SQLiteHelper  extends SQLiteOpenHelper {
         statement.executeInsert();
 
     }
-public Cursor getData(String sql){
-        SQLiteDatabase database=getReadableDatabase();
-        return database.rawQuery(sql,null);
+public Cursor getData(){
+        SQLiteDatabase database=getWritableDatabase();
+        Cursor res=database.rawQuery("select * from CATEGORY ",null);
+        return res;
 }
 
 
